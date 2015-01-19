@@ -101,7 +101,7 @@ class vagrant($version = get_latest_vagrant_version()) {
         creates => $vagrant_source,
         timeout => 0,
         before  => Package["vagrant-${version}"],
-        unless  => '/usr/bin/vagrant --version | grep -q ${version}',
+        unless  => "/usr/bin/vagrant --version | grep -q ${version}",
       }
     }
     windows: {

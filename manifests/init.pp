@@ -100,7 +100,8 @@ class vagrant($version = get_latest_vagrant_version()) {
         command => "/usr/bin/wget -O ${vagrant_source} ${base_url}/${vagrant_filename}",
         creates => $vagrant_source,
         timeout => 0,
-        before  => Package["vagrant-${version}"]
+        before  => Package["vagrant-${version}"],
+        unless  => '/usr/bin/vagrant --version | grep -q ${version}',
       }
     }
     windows: {
